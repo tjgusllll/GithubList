@@ -7,14 +7,36 @@
 //
 
 import UIKit
+import Alamofire
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-
+struct User : Codable{
+    var avatar_url : URL?
+    var id : Int?
+    var login : String?
 }
 
+struct UserList : Codable {
+    var users : [User]
+}
+
+class ViewController: UIViewController {
+    let url = "https://api.github.com/users"
+    var userlist : [User] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        LoadUserList()
+    }
+    
+    func LoadUserList() {
+        self.userlist.removeAll()
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON() {
+            response in
+            print(response.result.value!)
+            print("-------------------------------")
+            
+        }
+        
+    }
+    
+}
