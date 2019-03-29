@@ -7,38 +7,8 @@
 //
 
 import UIKit
-import Alamofire
 
-struct User : Codable{
 
-    var avatar_url : URL?
-    var id : Int?
-    var login : String?
-//    var events_url : URL?
-//    var followers_url : URL?
-//    var following_url : URL?
-//    var gists_url : URL?
-//    var gravatar_id : String?
-//    var html_url : URL?
-//    var node_id : String?
-//    var organizations_url : URL?
-//    var received_events_url : URL?
-//    var repos_url : URL?
-//    var site_admin : Bool?
-//    var starred_url : URL?
-//    var subscriptions_url : URL?
-//    var type : String?
-//    var url : URL?
-
-    
-}
-
-struct UserList : Codable {
-    var users : [User]
-}
-
-let myurl: String = "https://api.github.com/users"
-var userlist : [User] = [User]()
 
 
 
@@ -52,12 +22,7 @@ class ViewController: UIViewController {
         return tableview
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        
-    }
-    
+    //MARK:- SetupUI_TableView
     func setupUI() {
         self.tableview.dataSource = self
         self.tableview.delegate = self
@@ -71,62 +36,61 @@ class ViewController: UIViewController {
             self.view.trailingAnchor.constraint(equalTo: tableview.trailingAnchor)
             ])
         
+        print("setupUI_Tableview----fin")
+       
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         LoadUserList()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setupUI()
         self.tableview.reloadData()
     }
-    
-    //MARK:- Get All Users
-    func LoadUserList() {
-        userlist.removeAll()
-        Alamofire.request(myurl, method: .get, encoding: JSONEncoding.default, headers: nil).responseJSON() {
-            response in
-                    print(response.result.value!)
-                   print("-------------------------------")
-            let decoder = JSONDecoder()
-            let data: Data? = response.data
-            print(data!)
-            
-            //안넘어가는부분
-            if let data = data, let myUser = try? decoder.decode(UserList.self, from: data) {
-                print(myUser)
-                print("-------------------------------2")
-                
-                var newUser = User()
-                for user in myUser.users {
-                    newUser.avatar_url = user.avatar_url!
-                    newUser.id = user.id!
-                    newUser.login = user.login!
-                    userlist.append(newUser)
-                }
-                
-                print(userlist.count)
-            }
-            print("-------------------------------3")
-        }
-    }
-    
 }
 
+
 extension ViewController : UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userlist.count
+        return 1//userlist.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! ItemCell
-        //cell.userImage = userlist[indexPath.row].avatar_url
+        print("----cellForRowAt")
+        
+//        cell.itemTitle.text = String(1)
+//        cell.itemDetail.text = "mojombo"
+//        let url = URL(string:"https://avatars0.githubusercontent.com/u/1?v=4")
+//        if let data = try? Data(contentsOf: url!) {
+//            let image = UIImage(data: data)
+//            cell.itemImageView.image = image
+//        }
+        
+        if let user_ava = userlist[indexPath.row].avatar_url,
+            let user_id = userlist[indexPath.row].id,
+            let user_login = userlist[indexPath.row].login {
+            print("user_id : \(user_id)")
         cell.itemTitle.text = String(userlist[indexPath.row].id!)
         cell.itemDetail.text = userlist[indexPath.row].login
         
-        //let url = URL(string:userlist[indexPath.row].avatar_url!)
-        //if let data = try? Data(contentsOf: url!) {
-//
-//        if let data = try? Data(contentsOf: userlist[indexPath.row].avatar_url!) {
-//            let image = UIImage(data: data)
-//            cell.itemImageView.image = image}
-//        cell.totalAmount = items[indexPath.row].itemAmount
-//        cell.currentAmount = items[indexPath.row].itemCurrentAmount
-        
+            cell.itemTitle.text = String(user_id)
+            cell.itemDetail.text = user_login
+
+            if let data = try? Data(contentsOf: user_ava) {
+                let image = UIImage(data: data)
+                cell.itemImageView.image = image
+            }
+            
+        }
         
         return cell
     }
+    
 }

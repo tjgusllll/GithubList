@@ -20,9 +20,8 @@ final class ItemCell: UITableViewCell {
     }
     
     //MARK:- UI Properties
-    //var userImage: URL?
-    //var userImage: String?
     
+    //Cell그릴때 테두리도 만들어주기
     let itemImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -43,6 +42,7 @@ final class ItemCell: UITableViewCell {
     //MARK:- Initialize
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        print("----ItemCell SetupUI")
         setupUI()
     }
     
@@ -61,7 +61,7 @@ final class ItemCell: UITableViewCell {
         //itemImage
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
         itemImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        itemImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        itemImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constant.basicMargin).isActive = true
         itemImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         //imageview,view는 intrinsic size가 없으므로 크기를 잡아줘야한다
@@ -76,7 +76,8 @@ final class ItemCell: UITableViewCell {
         
         //itemDetail
         itemDetail.translatesAutoresizingMaskIntoConstraints = false
-        itemDetail.centerXAnchor.constraint(equalTo: itemTitle.centerXAnchor).isActive = true
+        //itemDetail.centerXAnchor.constraint(equalTo: itemTitle.centerXAnchor).isActive = true
+        itemDetail.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: Constant.basicMargin).isActive = true
         itemDetail.topAnchor.constraint(equalTo: itemTitle.bottomAnchor, constant: (Constant.basicMargin / 2)).isActive = true
         
         

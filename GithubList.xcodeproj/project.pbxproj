@@ -13,6 +13,7 @@
 		C325C43E224B964400E36731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C325C43C224B964400E36731 /* Main.storyboard */; };
 		C325C440224B964600E36731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C325C43F224B964600E36731 /* Assets.xcassets */; };
 		C325C451224BB88300E36731 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325C450224BB88300E36731 /* ItemCell.swift */; };
+		C325C453224DF14D00E36731 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325C452224DF14D00E36731 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C325C43F224B964600E36731 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C325C444224B964600E36731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C325C450224BB88300E36731 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		C325C452224DF14D00E36731 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		CAD1D8DFD50235B1FD70B977 /* Pods-GithubList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GithubList/Pods-GithubList.debug.xcconfig"; sourceTree = "<group>"; };
 		DDE022C8797C68E9CA363791 /* Pods_GithubList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GithubList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -83,6 +85,7 @@
 				C325C438224B964400E36731 /* AppDelegate.swift */,
 				C325C43A224B964400E36731 /* ViewController.swift */,
 				C325C450224BB88300E36731 /* ItemCell.swift */,
+				C325C452224DF14D00E36731 /* UserModel.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			files = (
 				C325C43B224B964400E36731 /* ViewController.swift in Sources */,
 				C325C439224B964400E36731 /* AppDelegate.swift in Sources */,
+				C325C453224DF14D00E36731 /* UserModel.swift in Sources */,
 				C325C451224BB88300E36731 /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
