@@ -80,8 +80,5 @@ final class ItemCell: UITableViewCell {
         itemDetail.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: Constant.basicMargin).isActive = true
         itemDetail.topAnchor.constraint(equalTo: itemTitle.bottomAnchor, constant: (Constant.basicMargin / 2)).isActive = true
         
-        
-      
-        
     }
 }

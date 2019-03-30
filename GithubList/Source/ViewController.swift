@@ -8,10 +8,6 @@
 
 import UIKit
 
-
-
-
-
 class ViewController: UIViewController {
     
     
@@ -43,22 +39,25 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        LoadUserList()
         
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+//        DispatchQueue.global().sync {
+//
+//        }
+        LoadUserList(tableview)
         setupUI()
+        
+        DispatchQueue.main.async {
         self.tableview.reloadData()
+        }
     }
 }
+
 
 
 extension ViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1//userlist.count
+        return userlist.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

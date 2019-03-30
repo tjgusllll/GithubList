@@ -35,9 +35,10 @@ struct User : Codable{
 let myurl: String = "https://api.github.com/users"
 var userlist : [User] = [User]()
 
-//UserModel.swift로 나눠서 Codable 넣기
+
 //MARK:- Get All Users
-func LoadUserList() {
+    func LoadUserList(_ tableview : UITableView) {
+    print("UserModel LoadUserList")
     userlist.removeAll()
     
     //responseData로 하면 굳이 데이터로 변환을 하지 않아도 된다.
@@ -52,12 +53,12 @@ func LoadUserList() {
                     newUser.id = user.id
                     newUser.login = user.login
                     userlist.append(newUser)
+                    DispatchQueue.main.async {
+                        tableview.reloadData()
+                    }
                 }
                 print(userlist.count)
-                print(userlist[0])
                 print("LoadUserList----fin")
-                
-                
             } catch {
                 print("Decode 실패")
                 
@@ -67,3 +68,4 @@ func LoadUserList() {
         }
     }
 }
+
